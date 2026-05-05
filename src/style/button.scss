@@ -1,0 +1,20 @@
+.button {
+    border: none;
+    outline: none;
+    padding-inline: 1.5rem;
+    padding-block: 0.75rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &.primary-button {
+        background-color: var(--accent-2);
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 6px 18px rgba(255,111,97,0.08);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
