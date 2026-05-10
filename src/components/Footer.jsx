@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="site-footer__inner">
         <p>© {new Date().getFullYear()} ResumeGen — Built with care</p>
-        <small>Made for consistent, modern UI</small>
+        <small>Made for consistent, modern UI.</small>
       </div>
     </footer>
   );
