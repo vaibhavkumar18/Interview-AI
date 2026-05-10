@@ -12,8 +12,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin({ email, password });
-    navigate("/");
+    const success = await handleLogin({ email, password });
+
+    if (success) {
+      navigate("/");
+    }
   };
 
   if (loading) {
@@ -33,77 +36,48 @@ const Login = () => {
   }
 
   return (
-    <main className="auth-layout">
-      <div className="auth-content">
-        {/* Left side - Hero content */}
-        <div className="auth-hero">
-          <h1>Accelerate your career momentum.</h1>
-          <p>
-            Master the high-stakes world of corporate interviews with AI-driven
-            precision and personalized performance analytics.
-          </p>
-          <div className="auth-hero-visual">
-            <div style={{ textAlign: "center", width: "100%" }}>
-              <p style={{ marginBottom: "1rem" }}>Welcome back to ResumeGen</p>
-              <p style={{ fontSize: "0.9rem" }}>
-                Your interview preparation portal awaits
-              </p>
-            </div>
-          </div>
+    <main className="auth-layout login-layout">
+      <div className="auth-card login-card">
+        <div className="login-header">
+          <span className="login-badge">Welcome back</span>
+          <h1>Login to your account</h1>
+          <p>Continue where you left off and keep building your resume.</p>
         </div>
 
-        {/* Right side - Login Form */}
-        <div className="auth-form-section">
-          <div className="auth-card">
-            <h2>Welcome back</h2>
-            <p>Access your interview preparation portal.</p>
-
-            <form onSubmit={handleSubmit} className="auth-form">
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-
-              <button type="submit" className="auth-button">
-                Login →
-              </button>
-            </form>
-
-            <div className="auth-divider">OR CONTINUE WITH</div>
-
-            <div className="auth-social">
-              <button type="button" className="social-button">
-                Google
-              </button>
-              <button type="button" className="social-button">
-                LinkedIn
-              </button>
-            </div>
-
-            <div className="auth-footer">
-              Don't have an account?{" "}
-              <Link to="/register">Sign up for free</Link>
-            </div>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <button type="submit" className="auth-button">
+            Login
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          Don’t have an account? <Link to="/register">Register</Link>
         </div>
       </div>
     </main>

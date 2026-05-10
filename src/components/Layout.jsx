@@ -5,11 +5,13 @@ import Footer from './Footer'
 
 const Layout = () => {
     return (
-        <>
+        <div className="app-shell">
             <Navbar />
-            <Outlet />
+            <main className="app-shell__main">
+                <Outlet />
+            </main>
             <Footer />
-        </>
+        </div>
     )
 }
 

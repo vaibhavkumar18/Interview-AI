@@ -1,35 +1,167 @@
-@use './style/button.scss';
-@use './style/navbar.scss';
-@use './style/footer.scss';
+@use "./style/button.scss";
+@use "./style/navbar.scss";
+@use "./style/footer.scss";
 
 :root {
-    --bg: #0b1220;
-    --surface: #0f1724;
-    --card: #0f2433;
-    --text: #e6eef6;
-    --muted: #9aa7b2;
-    --accent: #00c2a8;
-    --accent-2: #ff6f61;
+  --bg: #000;
+  --surface: #0f1724;
+  --card: #50565a;
+  --text: #e6eef6;
+  --muted: #9aa7b2;
+  --accent: #00c2a8;
+  --accent-2: #ff6f61;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-    height: 100%;
-    width: 100%;
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.app-shell__main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .highlight {
-    color: var(--accent-2);
+  color: var(--accent-2);
 }
 /* Small responsive container for main content from routes */
-.route-container { max-width: 1100px; margin: 1.25rem auto; padding: 1rem; }
+.route-container {
+
+
+  padding: 1rem;
+}
+
+/* Centered loading UI used across interview pages */
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--text);
+  min-height: 40vh;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.loading-screen.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1200;
+  padding: 2rem;
+}
+
+.loading-screen p {
+  max-width: 22rem;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.08);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+
+@media (max-width: 639px) {
+  .loading-screen {
+    min-height: 100dvh;
+    min-height: 100vh;
+    gap: 0.6rem;
+    padding: 1rem;
+    width: 100vw;
+  }
+
+  .loading-screen.overlay {
+    padding: 1rem;
+  }
+
+  .loading-screen p {
+    max-width: 16rem;
+    font-size: 0.85rem;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .loading-screen {
+    min-height: 36vh;
+    gap: 0.7rem;
+    padding: 1.25rem;
+  }
+
+  .loading-screen p {
+    max-width: 20rem;
+    font-size: 0.9rem;
+  }
+
+  .spinner {
+    width: 42px;
+    height: 42px;
+    border-width: 3.5px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .loading-screen {
+    min-height: 40vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .loading-screen p {
+    max-width: 22rem;
+    font-size: 0.95rem;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg) }
+}

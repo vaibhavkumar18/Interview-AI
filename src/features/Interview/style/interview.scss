@@ -1,135 +1,107 @@
-/* Interview three-column layout — follows Home theme colors and spacing */
 .interview {
-  min-height: 78vh;
+  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2.25rem 1rem;
-  color: #eaf2ff;
+  padding: 1.5rem 0;
+  color: var(--text);
 
   &__card {
-    width: min(1180px, 100%);
-    background: rgba(12,14,20,0.7);
-    border: 1px solid rgba(123,140,176,0.12);
-    border-radius: 1rem;
+    width: 100%;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
     display: grid;
     grid-template-columns: 220px 1fr 260px;
     overflow: hidden;
-    box-shadow: 0 28px 60px rgba(0,0,0,0.55);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
   }
 
   &__side {
-    padding: 1.25rem 1.2rem;
+    padding: 1.1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.9rem;
 
     &--left {
-      border-right: 1px solid rgba(123,140,176,0.08);
-      nav {
-        margin-top: 0.6rem;
-      }
+      border-right: 1px solid #2a2a2a;
 
       nav ul {
         list-style: none;
         padding: 0;
-        margin: 1rem 0 0 0;
+        margin: 0.5rem 0 0;
+      }
 
-        li {
-          padding: 0.9rem 0.9rem;
-          color: rgba(200,210,225,0.78);
-          cursor: pointer;
-          font-size: 0.95rem;
-          border-radius: 0.6rem;
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
-        }
+      nav ul li {
+        padding: 0.7rem 0.8rem;
+        border-radius: 6px;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 1rem;
+      }
 
-        li::before {
-          content: '';
-          display:inline-block;
-          width: 18px;
-          height: 18px;
-          border-radius: 4px;
-          background: transparent;
-          border: 1px solid rgba(180,190,200,0.06);
-        }
+      nav ul li + li {
+        margin-top: 0.25rem;
+      }
 
-        li.is-active {
-          color: #fff;
-          background: linear-gradient(90deg, rgba(255,77,114,0.12), rgba(173,77,255,0.06));
-          box-shadow: inset 0 0 0 1px rgba(255,77,114,0.06);
-        }
-        li.is-active::before { background: rgba(255,77,114,0.18); border-color: rgba(255,77,114,0.22) }
+      nav ul li.is-active {
+        color: var(--text);
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
       }
     }
 
     &--right {
-      border-left: 1px solid rgba(123,140,176,0.08);
+      border-left: 1px solid #2a2a2a;
 
       .skill-header h3 {
         margin: 0;
-        color: rgba(225,235,255,0.92);
-        font-size: 1rem;
-        font-weight: 700;
-      }
-
-      .match-score {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.35rem;
-        padding: 1rem 0.5rem;
-
-        &__label { color: rgba(170,190,220,0.8); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em }
-        &__value { font-size: 2rem; font-weight: 800; color: #8ef08a }
-        &__note { font-size: 0.85rem; color: rgba(180,200,220,0.72) }
+        font-size: 1.6rem;
+        color: var(--text);
       }
 
       .skill-list {
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.6rem;
-        flex-wrap: wrap;
+        margin-top: 0.8rem;
+        display: grid;
+        gap: 0.5rem;
       }
     }
 
-      .interview__resume-action {
-        margin-top: auto;
-        padding-top: 1rem;
-      }
+    .interview__resume-action {
+      margin-top: auto;
+      padding-top: 0.8rem;
+    }
 
-      .interview__resume-button {
-        width: 100%;
-        border-radius: 0.85rem;
-        box-shadow: 0 14px 28px rgba(255, 77, 114, 0.18);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-      }
+    .interview__resume-button {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      box-shadow: none;
+    }
 
-      .interview__resume-icon {
-        width: 0.95rem;
-        height: 0.95rem;
-        flex: none;
-      }
+    .interview__resume-icon {
+      width: 0.95rem;
+      height: 0.95rem;
+      flex: none;
+    }
   }
 
   &__main {
-    padding: 1.6rem 1.5rem;
-    display: block;
-
-    .match-score {
-      display: none; /* moved to right column visually */
-    }
+    padding: 1.1rem;
 
     .qa-list {
       display: grid;
-      gap: 0.8rem;
-      margin-top: 0.6rem;
+      gap: 0.5rem;
+    }
+
+    .question-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 0.8rem 0.9rem;
     }
 
     .question-card__trigger {
@@ -138,234 +110,488 @@
       background: transparent;
       border: 0;
       padding: 0;
-      text-align: left;
       color: inherit;
+      text-align: left;
       cursor: pointer;
     }
 
-    .question-card {
-      border-radius: 0.9rem;
-      padding: 0.85rem 1rem;
-      background: linear-gradient(180deg, rgba(18,22,30,0.48), rgba(14,16,22,0.5));
-      border: 1px solid rgba(80,90,110,0.08);
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    .question-card__head {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
     }
-
-    .question-card:hover { transform: translateY(-3px); box-shadow: 0 18px 32px rgba(0,0,0,0.45) }
-
-    .question-card__head { display:flex; align-items:flex-start; gap: 0.9rem }
 
     .question-card__num {
-      min-width: 52px;
-      height: 36px;
+      min-width: 50px;
+      height: 34px;
       display: inline-grid;
       place-items: center;
-      background: rgba(50,20,40,0.25);
-      color: #ff9ab3;
-      border-radius: 8px;
-      border: 1px solid rgba(255,77,114,0.12);
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: var(--text);
       font-weight: 700;
+      font-size: 0.95rem;
     }
 
-    .question-card__title { flex:1; color: #e9f3ff; font-weight: 600 }
+    .question-card__title {
+      flex: 1;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
 
-    .question-card__toggle { background:transparent; border:none; color: rgba(200,210,220,0.66); cursor:pointer }
+    .question-card__toggle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1;
+    }
 
-    .question-card__meta { margin-top: 0.6rem; display:flex; gap:0.5rem }
+    .question-card__meta {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.4rem;
+    }
 
-    .pill { display:inline-block; padding:0.18rem 0.5rem; border-radius:0.45rem; font-size:0.68rem; font-weight:700; color:white }
-    .pill--intent { background: linear-gradient(90deg,#8b5cf6,#9f7aea); color:#e9e8ff }
-    .pill--model { background: linear-gradient(90deg,#14b8a6,#10b981); color:#042a1f }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: #2a2a2a;
+      color: var(--muted);
+      border: 1px solid #333;
+      letter-spacing: 0.02em;
+    }
 
-    .question-card__intention { margin-top:0.5rem; color: rgba(190,200,220,0.8); font-size:0.92rem }
+    .pill--intent {
+      color: #d7d0f9;
+      background: #27243a;
+      border-color: #34304b;
+    }
 
-    .question-card__answer { margin-top:0.8rem; color: rgba(205,220,235,0.95); background: rgba(10,12,16,0.12); padding:0.8rem; border-radius:0.6rem }
+    .pill--model {
+      color: #c7f1df;
+      background: #1f3530;
+      border-color: #2a4943;
+    }
+
+    .question-card__intention {
+      margin-top: 0.45rem;
+      color: #c3ced8;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .question-card__answer {
+      margin-top: 0.7rem;
+      background: #131313;
+      border: 1px solid #272727;
+      border-radius: 6px;
+      padding: 0.75rem 0.8rem;
+      color: #d9e1e9;
+      line-height: 1.5;
+    }
 
     .question-card__trigger:focus-visible {
-      outline: 2px solid rgba(255, 109, 142, 0.7);
-      outline-offset: 3px;
-      border-radius: 0.9rem;
+      outline: 2px solid #3f6bff;
+      outline-offset: 2px;
+      border-radius: 6px;
     }
 
     .roadmap {
-      margin-top: 0.4rem;
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
-      position: relative;
-      padding-left: 1rem;
+      gap: 1.3rem;
+      padding-left: 0.4rem;
+      margin-top: 0.2rem;
     }
 
     .roadmap::before {
-      content: '';
-      position: absolute;
-      left: 0.35rem;
-      top: 0.4rem;
-      bottom: 0.55rem;
-      width: 2px;
-      background: linear-gradient(180deg, rgba(255, 109, 142, 0.95), rgba(255, 109, 142, 0.18));
-      box-shadow: 0 0 0 1px rgba(255,109,142,0.05);
+      content: none;
     }
 
     .roadmap-day {
       position: relative;
-      padding-left: 2.25rem;
-      padding-bottom: 0.6rem;
+      padding-left: 2.05rem;
+      padding-bottom: 0.25rem;
     }
 
     .roadmap-day::before {
-      content: '';
+      content: "";
       position: absolute;
-      left: -0.1rem;
-      top: 0.2rem;
+      left: 0;
+      top: 0.1rem;
       width: 14px;
       height: 14px;
       border-radius: 999px;
-      background: #11161f;
       border: 3px solid #ff6e8e;
-      box-shadow: 0 0 0 4px rgba(255,109,142,0.08);
+      background: #111;
+      box-shadow: 0 0 0 3px rgba(255, 110, 142, 0.12);
     }
 
     .roadmap-day:not(:last-child)::after {
-      content: '';
+      content: "";
       position: absolute;
-      left: 0.25rem;
+      left: 0.38rem;
       top: 1.2rem;
       bottom: -1.15rem;
       width: 2px;
-      background: rgba(255,109,142,0.14);
+      background: rgba(255, 110, 142, 0.45);
     }
 
     .roadmap-day h4 {
-      margin: 0 0 0.35rem 0;
+      margin: 0 0 0.35rem;
+      color: var(--text);
       font-size: 1rem;
-      color: #fff;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .roadmap-day ul { margin: 0; padding-left: 1rem; }
-    .roadmap-day li { color: rgba(200,210,224,0.8); font-size: 0.92rem; margin-bottom: 0.25rem }
+    .roadmap-day ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .roadmap-day li {
+      color: #c5cfda;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      margin-bottom: 0.25rem;
+    }
   }
 
   .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.45rem 0.8rem;
-    border-radius: 0.6rem;
-    background: rgba(28,34,50,0.48);
-    color: #eaf2ff;
-    border: 1px solid rgba(130,150,200,0.12);
-    font-size: 0.92rem;
-    width: fit-content;
-  }
-
-  .chip--high {
-    background: linear-gradient(90deg, rgba(255,77,114,0.12), rgba(255,77,114,0.06));
-    border-color: rgba(255,77,114,0.18);
-    color: #ff9ab3;
-  }
-
-  .chip--medium {
-    background: linear-gradient(90deg, rgba(94,147,255,0.08), rgba(94,147,255,0.03));
-    border-color: rgba(94,147,255,0.16);
-    color: #bcd6ff;
-  }
-
-  .chip--low {
-    background: rgba(80,90,100,0.12);
-    border-color: rgba(120,130,150,0.06);
-    color: rgba(200,210,220,0.88);
-  }
-
-  .skill-list .chip {
     display: block;
     width: 100%;
-    padding: 0.8rem 0.85rem;
-    border-radius: 0.65rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+    font-size: 0.95rem;
     font-weight: 700;
-    margin-right: 0;
   }
 
   .chip--high {
-    background: linear-gradient(90deg, rgba(255,77,114,0.24), rgba(89,16,32,0.95));
-    color: #ffd6de;
-    border-left: 4px solid #ff6e8e;
+    background: #431d21;
+    border-color: #5b272e;
+    color: #ffe6ea;
   }
 
   .chip--medium {
-    background: linear-gradient(90deg, rgba(245, 158, 11, 0.18), rgba(83, 47, 11, 0.96));
-    color: #ffe2b0;
-    border-left: 4px solid #f59e0b;
+    background: #44321a;
+    border-color: #5d4627;
+    color: #ffefdc;
   }
 
   .chip--low {
-    background: linear-gradient(90deg, rgba(16,185,129,0.16), rgba(14,58,39,0.96));
-    color: #d9fce9;
-    border-left: 4px solid #10b981;
+    background: #1f3b2d;
+    border-color: #2a503d;
+    color: #e5fff1;
+  }
+
+  .match-score {
+    margin-bottom: 0.9rem;
+  }
+
+  .match-score--donut {
+    display: grid;
+    justify-items: center;
+    gap: 0.45rem;
   }
 
   .match-score--donut .donut {
-    width: 88px;
-    height: 88px;
+    width: 82px;
+    height: 82px;
     border-radius: 50%;
     display: grid;
     place-items: center;
     position: relative;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
   }
 
   .match-score--donut .donut::before {
-    content: '';
+    content: "";
     position: absolute;
-    inset: 7px;
+    inset: 8px;
     border-radius: 50%;
-    background: #11161f;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    background: #111;
+    box-shadow: inset 0 0 0 1px #2b2b2b;
   }
 
   .match-score--donut .donut__center {
     position: relative;
     z-index: 1;
-    font-size: 1.45rem;
-    font-weight: 800;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
     line-height: 1;
-    color: #f1f7ff;
     text-align: center;
   }
 
   .match-score--donut .donut__center::after {
-    content: '%';
+    content: "%";
     display: block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: rgba(220,230,242,0.65);
     margin-top: 0.1rem;
+    font-size: 0.7rem;
+    color: var(--muted);
   }
 
   .match-score--donut .match-score__note {
-    font-size: 0.85rem;
-    color: rgba(180,200,220,0.72);
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-align: center;
   }
-
-  /* skill chips as boxed rows */
-  .skill-list .chip {
-    display:block;
-    width:100%;
-    padding:0.6rem 0.8rem;
-    border-radius:0.55rem;
-    font-weight:700;
-  }
-
-  .chip--high { background: linear-gradient(90deg,#3b0f0f,#4b1a1a); color:#ffd7db; border-left:4px solid #ff6e8e }
-  .chip--medium { background: linear-gradient(90deg,#432b12,#5b3a18); color:#ffe9c8; border-left:4px solid #f59e0b }
-  .chip--low { background: linear-gradient(90deg,#13311a,#163f25); color:#d7f7db; border-left:4px solid #10b981 }
 
   @media (max-width: 980px) {
-    &__card { grid-template-columns: 1fr; }
-    &__side--left { order: 1; border-right: 0; border-bottom: 1px solid rgba(123,140,176,0.08); }
-    &__main { order: 2; padding: 1rem; }
-    &__side--right { order: 3; border-left: 0; border-top: 1px solid rgba(123,140,176,0.08); }
+    &__card {
+      grid-template-columns: 1fr;
+    }
+
+    &__side--left {
+      order: 1;
+      border-right: 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    &__main {
+      order: 2;
+      padding: 1rem;
+    }
+
+    &__side--right {
+      order: 3;
+      border-left: 0;
+      border-top: 1px solid #2a2a2a;
+    }
   }
 }
 
-/* small helper spacing */
-.skill-list .chip { display:inline-block; margin-right:0.5rem; }
+/* Phone: < 640px */
+@media (max-width: 639px) {
+  .interview {
+    padding: 1rem 0;
+
+    &__card {
+      border-radius: 6px;
+    }
+
+    &__side {
+      padding: 0.9rem;
+      gap: 0.7rem;
+
+      nav ul li {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.7rem;
+      }
+
+      &--right .skill-header h3 {
+        font-size: 1.2rem;
+      }
+
+      .interview__resume-button {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__main {
+      padding: 0.9rem;
+
+      .question-card {
+        padding: 0.7rem 0.8rem;
+      }
+
+      .question-card__num {
+        min-width: 45px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+
+      .question-card__title {
+        font-size: 0.9rem;
+      }
+
+      .question-card__intention {
+        font-size: 0.85rem;
+      }
+
+      .question-card__answer {
+        font-size: 0.85rem;
+        padding: 0.65rem 0.75rem;
+      }
+
+      .pill {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+      }
+
+      .roadmap-day h4 {
+        font-size: 0.95rem;
+      }
+
+      .roadmap-day li {
+        font-size: 0.85rem;
+      }
+    }
+
+    .chip {
+      font-size: 0.85rem;
+      padding: 0.6rem 0.7rem;
+    }
+
+    .match-score--donut .donut {
+      width: 70px;
+      height: 70px;
+    }
+
+    .match-score--donut .donut__center {
+      font-size: 0.9rem;
+    }
+
+    .match-score--donut .match-score__note {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/* Tablet: 640px – 1024px */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .interview {
+    padding: 1.2rem 0;
+
+    &__side {
+      padding: 1rem;
+      gap: 0.85rem;
+
+      nav ul li {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.75rem;
+      }
+
+      &--right .skill-header h3 {
+        font-size: 1.4rem;
+      }
+
+      .interview__resume-button {
+        font-size: 0.95rem;
+      }
+    }
+
+    &__main {
+      padding: 1rem;
+
+      .question-card {
+        padding: 0.75rem 0.85rem;
+      }
+
+      .question-card__num {
+        min-width: 48px;
+        height: 33px;
+        font-size: 0.9rem;
+      }
+
+      .question-card__title {
+        font-size: 0.95rem;
+      }
+
+      .question-card__intention {
+        font-size: 0.9rem;
+      }
+
+      .question-card__answer {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.75rem;
+      }
+
+      .pill {
+        font-size: 0.68rem;
+        padding: 0.17rem 0.45rem;
+      }
+
+      .roadmap-day h4 {
+        font-size: 0.98rem;
+      }
+
+      .roadmap-day li {
+        font-size: 0.9rem;
+      }
+    }
+
+    .chip {
+      font-size: 0.9rem;
+      padding: 0.65rem 0.75rem;
+    }
+
+    .match-score--donut .donut {
+      width: 76px;
+      height: 76px;
+    }
+
+    .match-score--donut .donut__center {
+      font-size: 1rem;
+    }
+
+    .match-score--donut .match-score__note {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+/* Laptop: > 1024px */
+@media (min-width: 1025px) {
+  .interview {
+    padding: 1.5rem 0;
+
+    &__side {
+      nav ul li {
+        font-size: 1rem;
+      }
+
+      &--right .skill-header h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+    &__main {
+      .question-card__num {
+        font-size: 0.95rem;
+      }
+
+      .question-card__title {
+        font-size: 1.02rem;
+      }
+
+      .question-card__intention {
+        font-size: 0.95rem;
+      }
+
+      .question-card__answer {
+        font-size: 0.92rem;
+      }
+
+      .pill {
+        font-size: 0.7rem;
+      }
+
+      .roadmap-day h4 {
+        font-size: 1rem;
+      }
+
+      .roadmap-day li {
+        font-size: 0.95rem;
+      }
+    }
+
+    .chip {
+      font-size: 0.95rem;
+    }
+
+    .match-score--donut .donut__center {
+      font-size: 1.05rem;
+    }
+
+    .match-score--donut .match-score__note {
+      font-size: 0.9rem;
+    }
+  }
+}

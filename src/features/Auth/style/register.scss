@@ -1,2 +1,6 @@
-/* Register page styles - inherits from login layout */
-@import './login.scss';
+@use "./login.scss";
+
+.register-layout {
+	min-height: 100vh;
+}
+

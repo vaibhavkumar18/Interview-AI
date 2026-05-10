@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import "../style/interview.scss"
 import { useInterview } from '../hooks/useInterview';
 
@@ -6,7 +6,7 @@ import { useInterview } from '../hooks/useInterview';
 const Interview = () => {
   const [tab, setTab] = useState('technical')
   const [openIndex, setOpenIndex] = useState(null)
-  const { interviewReport, getReportById, getResumePDF, loading, loadingMessage } = useInterview();
+  const { interviewReport, getResumePDF, loading, loadingMessage } = useInterview();
   const report = interviewReport || {}
 
   if (loading) {
