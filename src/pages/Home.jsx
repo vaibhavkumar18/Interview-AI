@@ -1,12 +1,10 @@
 import React from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import "../style/home.scss";
+import { useCachedBackendImages } from "../hooks/useCachedBackendImages";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL?.replace(/\/$/, "") || "";
-const previewImages = {
-  interview: `${backendUrl}/images/Interview.png`,
-  createInterview: `${backendUrl}/images/CreateInterview.png`,
-};
 
 const features = [
   {
@@ -50,6 +48,23 @@ const steps = [
 ];
 
 const Home = () => {
+  const backendImages = useCachedBackendImages(
+    useMemo(
+      () => ({
+        interview: "/images/Interview.png",
+        createInterview: "/images/CreateInterview.png",
+      }),
+      [],
+    ),
+  )
+  const imagesReady = Boolean(backendImages.interview && backendImages.createInterview)
+
+  const previewImages = {
+    interview: backendImages.interview || `${backendUrl}/images/Interview.png`,
+    createInterview:
+      backendImages.createInterview || `${backendUrl}/images/CreateInterview.png`,
+  }
+
   return (
     <main className="home">
       <section className="home__shells">
@@ -75,11 +90,15 @@ const Home = () => {
           </div>
 
           <div className="home__preview" aria-label="Product preview">
-            <img
-              className="home__preview-image home__preview-image--tilted"
-              src={previewImages.createInterview}
-              alt="Interview strategy preview"
-            />
+            {!imagesReady ? (
+              <div className="home__preview-skeleton" aria-hidden="true"></div>
+            ) : (
+              <img
+                className="home__preview-image home__preview-image--tilted"
+                src={previewImages.createInterview}
+                alt="Interview strategy preview"
+              />
+            )}
           </div>
         </header>
 

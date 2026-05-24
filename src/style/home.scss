@@ -154,6 +154,37 @@
     max-width: 100%;
   }
 
+  &__preview-skeleton {
+    width: min(100%, 890px);
+    height: min(520px, 56vw);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+      rgba(15, 20, 31, 0.92);
+    box-shadow:
+      0 14px 28px rgba(0, 0, 0, 0.24),
+      -10px 12px 22px rgba(0, 0, 0, 0.12);
+    transform-origin: right center;
+    transform: perspective(1400px) rotateY(-12deg) rotateZ(1deg)
+      translateX(0);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.04) 45%,
+        transparent 80%
+      );
+      animation: homePreviewShimmer 1.8s ease-in-out infinite;
+    }
+  }
+
   &__section {
     display: grid;
     gap: 0.9rem;
@@ -549,5 +580,15 @@
     &__cta {
       padding: 1.1rem;
     }
+  }
+}
+
+@keyframes homePreviewShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
