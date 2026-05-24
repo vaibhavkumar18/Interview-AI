@@ -1,4 +1,4 @@
-.home {
+.create-interview-plan {
   width: 100%;
   min-height: 0;
   display: flex;
@@ -6,58 +6,60 @@
   align-items: center;
   justify-content: flex-start;
   padding: 2rem 1rem;
-  background-color: #000;
-  color: var(--text);
+  color: #f4f7fb;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(79, 130, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 88% 16%, rgba(92, 130, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, #080a10 0%, #0c0f15 42%, #0a0c12 100%);
 
   * {
     box-sizing: border-box;
   }
 
   &__shell {
-    width: min(900px, 100%);
+    width: min(980px, 100%);
     display: grid;
-    gap: 2rem;
+    gap: 1.8rem;
   }
 
   &__hero {
-    text-align: center;
-    padding: 0 1rem;
+    padding: 0 0.25rem;
+    text-align: left;
 
     h1 {
-      margin: 0;
-      font-size: 2rem;
-      line-height: 1.2;
-      font-weight: 700;
-      color: var(--text);
-
-      span {
-        color: var(--text);
-      }
+      margin: 0.3rem 0 0.65rem;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 750;
+      color: #f4f7fb;
     }
   }
 
   &__eyebrow {
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 0.5rem;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: normal;
+    color: #9ab0de;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
   }
 
   &__subtitle {
-    max-width: 700px;
-    margin: 0.75rem auto 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    max-width: 720px;
+    margin: 0;
+    color: rgba(234, 240, 249, 0.66);
+    font-size: 0.98rem;
+    line-height: 1.68;
   }
 
   &__card {
-    border: 1px solid #333;
-    border-radius: 8px;
-    background: #111;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(98, 121, 171, 0.16);
+    border-radius: 20px;
+    background: rgba(17, 21, 30, 0.84);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
     overflow: hidden;
   }
 
@@ -66,15 +68,15 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .panel {
+  &__panel {
     padding: 1.5rem;
 
     &--job {
-      border-right: 1px solid #333;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
     }
   }
 
-  .panel__head {
+  &__panel-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -84,25 +86,25 @@
     h2 {
       margin: 0;
       font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 700;
+      color: #f4f7fb;
     }
   }
 
-  .panel__label {
+  &__panel-label {
     margin: 0;
     font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 500;
+    color: rgba(234, 240, 249, 0.55);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
   }
 
-  .panel__badge {
+  &__panel-badge {
     display: none;
   }
 
-  .field {
+  &__field {
     display: block;
     width: 100%;
     position: relative;
@@ -111,22 +113,22 @@
       width: 100%;
       min-height: 200px;
       resize: none;
-      border: 1px solid #333;
-      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
       outline: none;
       padding: 0.75rem;
-      background-color: #1a1a1a;
-      color: var(--text);
+      background-color: rgba(255, 255, 255, 0.03);
+      color: #f4f7fb;
       font: inherit;
       line-height: 1.5;
 
       &::placeholder {
-        color: #666;
+        color: rgba(234, 240, 249, 0.35);
       }
 
       &:focus {
-        border-color: #555;
-        background-color: #222;
+        border-color: rgba(122, 161, 239, 0.35);
+        background-color: rgba(255, 255, 255, 0.05);
       }
     }
 
@@ -135,7 +137,7 @@
     }
   }
 
-  .field__sr-only {
+  &__field-sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -147,7 +149,7 @@
     border: 0;
   }
 
-  .panel__footnote {
+  &__panel-footnote {
     display: flex;
     justify-content: flex-end;
     margin-top: 0.5rem;
@@ -155,11 +157,11 @@
     font-size: 0.75rem;
   }
 
-  .profile-upload {
+  &__profile-upload {
     margin-top: 0.5rem;
   }
 
-  .profile-upload__dropzone {
+  &__profile-upload-dropzone {
     min-height: 120px;
     display: grid;
     place-items: center;
@@ -190,7 +192,7 @@
     }
   }
 
-  .profile-upload__icon {
+  &__profile-upload-icon {
     width: 1.5rem;
     height: 1.5rem;
     display: inline-grid;
@@ -205,7 +207,7 @@
     }
   }
 
-  .panel__divider {
+  &__panel-divider {
     margin: 1rem 0;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -224,38 +226,38 @@
     }
   }
 
-  .field-group {
+  &__field-group {
     display: grid;
     gap: 0.5rem;
   }
 
-  .field__label {
-    color: var(--text);
+  &__field-label {
+    color: #f4f7fb;
     font-size: 0.85rem;
     font-weight: 500;
   }
 
-  .panel__alert {
+  &__panel-alert {
     margin-top: 1rem;
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    border: 1px solid #333;
-    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
     padding: 0.75rem;
-    background-color: #1a1a1a;
-    color: var(--muted);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: rgba(234, 240, 249, 0.62);
     font-size: 0.8rem;
     line-height: 1.5;
   }
 
-  .panel__alert-dot {
+  &__panel-alert-dot {
     width: 0.4rem;
     height: 0.4rem;
     flex: none;
     margin-top: 0.35rem;
     border-radius: 50%;
-    background-color: var(--accent);
+    background-color: #7aa1ef;
   }
 
   &__recent-reports {
@@ -355,22 +357,25 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem 1.5rem;
-    border-top: 1px solid #333;
-    background-color: #111;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.015);
   }
 
   &__meta {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    color: var(--muted);
+    color: rgba(234, 240, 249, 0.56);
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
   }
 
   &__submit {
     min-width: 200px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7aa1ef 0%, #6889df 100%);
+    box-shadow: 0 10px 24px rgba(95, 141, 255, 0.16);
   }
 
   &__links {
@@ -381,12 +386,12 @@
     padding-top: 1rem;
 
     a {
-      color: var(--muted);
+      color: rgba(234, 240, 249, 0.6);
       text-decoration: none;
       font-size: 0.75rem;
 
       &:hover {
-        color: var(--text);
+        color: #f4f7fb;
       }
     }
   }
@@ -422,31 +427,31 @@
       gap: 1.5rem;
     }
 
-    .panel {
+    &__panel {
       padding: 1rem;
 
-      &__head {
+      &-head {
         h2 {
           font-size: 0.95rem;
         }
       }
 
-      &__label {
+      &-label {
         font-size: 0.7rem;
       }
     }
 
-    .field textarea {
+    &__field textarea {
       min-height: 150px;
       font-size: 0.95rem;
     }
 
-    .profile-upload__dropzone {
+    &__profile-upload-dropzone {
       min-height: 100px;
       font-size: 0.9rem;
     }
 
-    .panel__alert {
+    &__panel-alert {
       font-size: 0.75rem;
     }
 
@@ -467,7 +472,6 @@
     }
   }
 
-  /* Tablet: 640px – 1024px */
   @media (min-width: 640px) and (max-width: 1024px) {
     padding: 1.5rem 1rem;
 
@@ -489,23 +493,23 @@
       gap: 1.75rem;
     }
 
-    .panel {
+    &__panel {
       padding: 1.25rem;
 
-      &__head h2 {
+      &-head h2 {
         font-size: 0.98rem;
       }
 
-      &__label {
+      &-label {
         font-size: 0.73rem;
       }
     }
 
-    .field textarea {
+    &__field textarea {
       font-size: 0.95rem;
     }
 
-    .panel__alert {
+    &__panel-alert {
       font-size: 0.8rem;
     }
 
@@ -523,7 +527,6 @@
     }
   }
 
-  /* Laptop: > 1024px */
   @media (min-width: 1025px) {
     padding: 2rem 1rem;
 
@@ -541,19 +544,19 @@
       }
     }
 
-    .panel {
+    &__panel {
       padding: 1.5rem;
 
-      &__head h2 {
+      &-head h2 {
         font-size: 1rem;
       }
 
-      &__label {
+      &-label {
         font-size: 0.75rem;
       }
     }
 
-    .panel__alert {
+    &__panel-alert {
       font-size: 0.8rem;
     }
 

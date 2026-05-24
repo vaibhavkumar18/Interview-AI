@@ -3,14 +3,19 @@
   display: flex;
   justify-content: center;
   padding: 2rem 0;
+  color: #f4f7fb;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(79, 130, 255, 0.1), transparent 26%),
+    radial-gradient(circle at 88% 16%, rgba(92, 130, 255, 0.07), transparent 24%),
+    linear-gradient(180deg, #080a10 0%, #0c0f15 42%, #0a0c12 100%);
 
   &__card {
     width: 100%;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 1.25rem;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    background: rgba(17, 21, 30, 0.84);
+    border: 1px solid rgba(98, 121, 171, 0.16);
+    border-radius: 20px;
+    padding: 1.35rem;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
   }
 
   &__head {
@@ -18,17 +23,19 @@
 
     h2 {
       margin: 0;
-      color: var(--text);
+      color: #f4f7fb;
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      letter-spacing: -0.03em;
     }
     .muted {
-      color: var(--muted);
+      color: rgba(234, 240, 249, 0.62);
       font-size: 0.9rem;
       margin-top: 0.25rem;
     }
   }
 
   .all-reports__empty {
-    color: var(--muted);
+    color: rgba(234, 240, 249, 0.62);
     padding: 1rem 0;
   }
 
@@ -47,15 +54,18 @@
       justify-content: space-between;
       gap: 1rem;
       padding: 0.75rem 1rem;
-      background: #1a1a1a;
-      border-radius: 6px;
-      border: 1px solid #2a2a2a;
-      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #f4f7fb;
       text-align: left;
       cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
 
       &:hover {
-        background: #222;
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(122, 161, 239, 0.22);
+        transform: translateY(-1px);
       }
     }
 
@@ -66,13 +76,15 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-      color: var(--muted);
+      color: rgba(234, 240, 249, 0.58);
     }
     .report-list__score {
-      background: #333;
+      background: rgba(122, 161, 239, 0.14);
+      border: 1px solid rgba(122, 161, 239, 0.18);
       padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      border-radius: 999px;
       font-weight: 700;
+      color: #dce8ff;
     }
     .report-list__date {
       font-size: 0.85rem;
@@ -88,6 +100,7 @@
   justify-content: center;
   text-align: center;
   padding: 1rem;
+    color: #f4f7fb;
 
   p {
     margin: 0;
@@ -147,7 +160,7 @@
 
     &__card {
       padding: 1rem;
-      border-radius: 6px;
+      border-radius: 16px;
     }
 
     &__head {

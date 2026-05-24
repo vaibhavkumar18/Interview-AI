@@ -69,7 +69,7 @@ body,
   justify-content: center;
   flex-direction: column;
   gap: 0.75rem;
-  color: var(--text);
+  color: #f4f7fb;
   min-height: 40vh;
   width: 100%;
   padding: 1.5rem 1rem;
@@ -79,7 +79,12 @@ body,
 .loading-screen.overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(79, 130, 255, 0.1), transparent 26%),
+    radial-gradient(circle at 88% 16%, rgba(92, 130, 255, 0.06), transparent 24%),
+    rgba(6, 8, 13, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 1200;
   padding: 2rem;
 }
@@ -89,15 +94,18 @@ body,
   margin: 0;
   line-height: 1.5;
   font-size: 0.95rem;
+  color: rgba(234, 240, 249, 0.72);
 }
 
 .spinner {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.08);
-  border-top-color: var(--accent);
+  border: 4px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #7aa1ef;
+  border-right-color: rgba(122, 161, 239, 0.55);
   animation: spin 1s linear infinite;
+  box-shadow: 0 0 0 4px rgba(122, 161, 239, 0.05);
 }
 
 @media (max-width: 639px) {

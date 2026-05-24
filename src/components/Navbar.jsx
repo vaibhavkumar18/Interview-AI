@@ -1,28 +1,40 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../style/navbar.scss";
 import { useAuth } from "../features/Auth/hooks/useAuth";
-import { logout } from "../features/Auth/services/auth.api";
 
 const Navbar = () => {
   const context = useAuth();
-  const { user } = context;
+  const { user, handleLogout } = context;
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogoutClick = async () => {
+    if (loggingOut) return;
+
+    setLoggingOut(true);
     closeMenu();
+
+    const success = await handleLogout();
+
+    setLoggingOut(false);
+
+    if (success) {
+      navigate("/login");
+    }
   };
 
   return (
     <header className="navbar">
       <div className="navbar__inner">
         <Link to="/" className="navbar__brand" onClick={closeMenu}>
-          ResumeGen
+          InterviewAI
         </Link>
         <nav className="navbar__nav">
           <Link to="/" className="navbar__link">
@@ -36,9 +48,14 @@ const Navbar = () => {
               <Link to="/interview/reports" className="navbar__link">
                 Reports
               </Link>
-              <Link to="/" className="navbar__link navbar__link--cta" onClick={handleLogout}>
-                Logout
-              </Link>
+              <button
+                type="button"
+                className="navbar__link navbar__link--cta navbar__link-button"
+                onClick={handleLogoutClick}
+                disabled={loggingOut}
+              >
+                {loggingOut ? "Logging out..." : "Logout"}
+              </button>
             </>
           )}
           {user == null && (
@@ -90,13 +107,14 @@ const Navbar = () => {
                 >
                   Reports
                 </Link>
-                <Link
-                  to="/"
-                  className="navbar__mobile-link navbar__mobile-link--cta"
-                  onClick={handleLogout}
+                <button
+                  type="button"
+                  className="navbar__mobile-link navbar__mobile-link--cta navbar__mobile-link-button"
+                  onClick={handleLogoutClick}
+                  disabled={loggingOut}
                 >
-                  Logout
-                </Link>
+                  {loggingOut ? "Logging out..." : "Logout"}
+                </button>
               </>
             ) : (
               <>
@@ -113,6 +131,13 @@ const Navbar = () => {
               </>
             )}
           </nav>
+        )}
+
+        {loggingOut && (
+          <div className="loading-screen overlay navbar__logout-loader" role="status" aria-live="polite">
+            <div className="spinner" aria-hidden="true"></div>
+            <p>Logging you out...</p>
+          </div>
         )}
       </div>
     </header>

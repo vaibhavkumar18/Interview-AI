@@ -1,29 +1,63 @@
-import React, { useState } from 'react'
-import "../style/interview.scss"
-import { useInterview } from '../hooks/useInterview';
+import React, { useMemo, useState } from 'react'
+import '../style/interview.scss'
+import { useInterview } from '../hooks/useInterview'
 
+const sectionMeta = {
+  technical: {
+    title: 'Technical Assessment',
+    subtitle: 'Curated technical depth questions based on the candidate\'s profile.',
+    eyebrow: 'Technical questions',
+  },
+  behavioral: {
+    title: 'Behavioral Assessment',
+    subtitle: 'Questions that test leadership, ownership, and collaboration signals.',
+    eyebrow: 'Behavioral questions',
+  },
+  roadmap: {
+    title: 'Preparation Roadmap',
+    subtitle: 'A targeted review plan built from the report insights.',
+    eyebrow: 'Road Map',
+  },
+}
 
 const Interview = () => {
   const [tab, setTab] = useState('technical')
   const [openIndex, setOpenIndex] = useState(null)
-  const { interviewReport, getResumePDF, loading, loadingMessage } = useInterview();
+  const { interviewReport, getResumePDF, loading, loadingMessage } = useInterview()
   const report = interviewReport || {}
+
+  const scorePercentage = useMemo(() => {
+    const score = Number(report.matchScore || 0)
+    return Number.isNaN(score) ? 0 : Math.max(0, Math.min(100, score))
+  }, [report.matchScore])
+
+  const scoreLabel = useMemo(() => {
+    if (scorePercentage >= 80) return 'Strong match for this role'
+    if (scorePercentage >= 60) return 'Promising fit for this role'
+    if (scorePercentage >= 40) return 'Moderate fit for this role'
+    return 'High risk for this role'
+  }, [scorePercentage])
+
+  const currentSection = sectionMeta[tab]
+  const skillGaps = report.skillGaps || []
 
   if (loading) {
     return (
-      <main className='loading-screen'>
+      <main className='loading-screen interview__loading'>
         <div className='spinner' aria-label='Loading'></div>
         <p>{loadingMessage || 'Loading your interview report...'}</p>
       </main>
     )
   }
+
   const renderQuestions = (list = []) => (
     <div className='qa-list'>
       {list.map((q, idx) => {
         const key = `${tab}-${idx}`
         const isOpen = openIndex === key
+
         return (
-          <div className='question-card' key={key}>
+          <article className={`question-card ${isOpen ? 'is-open' : ''}`} key={key}>
             <button
               type='button'
               className='question-card__trigger'
@@ -41,9 +75,7 @@ const Interview = () => {
 
               <div className='question-card__meta'>
                 <span className='pill pill--intent'>INTENTION</span>
-                <span className='pill pill--model'>MODEL ANSWER</span>
               </div>
-
               <div className='question-card__intention'>{q.intention}</div>
             </button>
 
@@ -53,7 +85,7 @@ const Interview = () => {
                 <p>{q.answer}</p>
               </div>
             )}
-          </div>
+          </article>
         )
       })}
     </div>
@@ -63,12 +95,18 @@ const Interview = () => {
     <main className='interview route-container'>
       <div className='interview__card'>
         <aside className='interview__side interview__side--left' aria-label='Sections'>
-          <nav>
-            <ul>
-              <li className={tab === 'technical' ? 'is-active' : ''} onClick={() => { setTab('technical'); setOpenIndex(null); }}>Technical questions</li>
-              <li className={tab === 'behavioral' ? 'is-active' : ''} onClick={() => { setTab('behavioral'); setOpenIndex(null); }}>Behavioral questions</li>
-              <li className={tab === 'roadmap' ? 'is-active' : ''} onClick={() => { setTab('roadmap'); setOpenIndex(null); }}>Road Map</li>
-            </ul>
+          
+
+          <nav className='interview__nav' aria-label='Interview sections'>
+            <button type='button' className={tab === 'technical' ? 'is-active' : ''} onClick={() => { setTab('technical'); setOpenIndex(null) }}>
+              Technical questions
+            </button>
+            <button type='button' className={tab === 'behavioral' ? 'is-active' : ''} onClick={() => { setTab('behavioral'); setOpenIndex(null) }}>
+              Behavioral questions
+            </button>
+            <button type='button' className={tab === 'roadmap' ? 'is-active' : ''} onClick={() => { setTab('roadmap'); setOpenIndex(null) }}>
+              Road Map
+            </button>
           </nav>
 
           <div className='interview__resume-action'>
@@ -87,6 +125,14 @@ const Interview = () => {
         </aside>
 
         <section className='interview__main' aria-label='Main content'>
+          <header className='interview__hero'>
+            <div className='interview__hero-copy'>
+              <span className='interview__eyebrow'>{currentSection.eyebrow}</span>
+              <h1>{currentSection.title}</h1>
+              <p>{currentSection.subtitle}</p>
+            </div>
+          </header>
+
           {tab === 'technical' && renderQuestions(report.technicalQuestions)}
           {tab === 'behavioral' && renderQuestions(report.behavioralQuestions)}
 
@@ -96,7 +142,7 @@ const Interview = () => {
                 <div className='roadmap-day' key={i}>
                   <h4>Day {p.day} — {p.focus}</h4>
                   <ul>
-                    {p.tasks.map((t, j) => <li key={j}>{t}</li>)}
+                    {(p.tasks || []).map((t, j) => <li key={j}>{t}</li>)}
                   </ul>
                 </div>
               ))}
@@ -107,18 +153,19 @@ const Interview = () => {
 
         <aside className='interview__side interview__side--right' aria-label='Skill gaps'>
           <div className='match-score match-score--donut' aria-hidden='true'>
-            <div className='donut' style={{ background: `conic-gradient(#2ecc71 ${(report.matchScore || 0) * 3.6}deg, rgba(255,255,255,0.06) 0deg)` }}>
-              <div className='donut__center'>{report.matchScore || 0}%</div>
+            <div className='donut' style={{ background: `conic-gradient(#28d07d ${scorePercentage * 3.6}deg, rgba(255,255,255,0.06) 0deg)` }}>
+              <div className='donut__center'>{scorePercentage}%</div>
             </div>
-            <div className='match-score__note'>Strong match for this role</div>
+            <div className='match-score__note'>{scoreLabel}</div>
           </div>
 
           <div className='skill-header'>
             <h3>Skill Gaps</h3>
+            <span>{skillGaps.length} critical areas</span>
           </div>
 
           <div className='skill-list'>
-            {(report.skillGaps || []).map((s, i) => (
+            {skillGaps.map((s, i) => (
               <span className={`chip chip--${(s.severity || 'low').toLowerCase()}`} key={i}>{s.skill}</span>
             ))}
           </div>
