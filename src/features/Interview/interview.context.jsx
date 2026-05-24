@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const InterviewContext = createContext();
 
 export const InterviewProvider = ({ children }) => {

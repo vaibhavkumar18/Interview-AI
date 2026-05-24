@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <footer className="site-footer">
       <div className="site-footer__inner">
-        <p>© {new Date().getFullYear()} ResumeGen — Built with care</p>
-        <small>Made for consistent, modern UI.</small>
+        <p>© {new Date().getFullYear()} InterviewAI </p>
+        <small>Made By Vaibhav.</small>
       </div>
     </footer>
   );

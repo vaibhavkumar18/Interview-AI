@@ -3,7 +3,7 @@
 @use "./style/footer.scss";
 
 :root {
-  --bg: #000;
+  --bg: #080a10;
   --surface: #0f1724;
   --card: #50565a;
   --text: #e6eef6;
@@ -23,7 +23,18 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  background-color: #000;
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(79, 130, 255, 0.14),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 88% 16%,
+      rgba(92, 130, 255, 0.1),
+      transparent 24%
+    ),
+    linear-gradient(180deg, #080a10 0%, #0c0f15 42%, #0a0c12 100%);
   color: var(--text);
   font-family:
     system-ui,
@@ -43,7 +54,7 @@ body,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #000;
+  background: transparent;
 }
 
 .app-shell__main {

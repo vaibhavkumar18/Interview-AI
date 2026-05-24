@@ -73,7 +73,7 @@ const Home = () => {
             <span className="home__eyebrow">Interview AI</span>
             <h1>Land your next role with simple AI guidance.</h1>
             <p>
-              ResumeGen helps you review your resume, practice realistic
+              InterviewAI helps you review your resume, practice realistic
               interview questions, and get clear feedback without a heavy or
               confusing interface.
             </p>

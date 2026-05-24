@@ -131,6 +131,28 @@
       opacity: 0.5;
       pointer-events: none;
     }
+
+    /* subtle glow behind the preview image */
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translateX(-50%);
+      width: 560px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 50% 45%,
+        rgba(122, 161, 239, 0.10) 0%,
+        rgba(122, 161, 239, 0.02) 40%,
+        transparent 70%
+      );
+      filter: blur(18px);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 0;
+    }
   }
 
   &__preview-image {
@@ -148,6 +170,7 @@
     transform-origin: right center;
     transform: perspective(1400px) rotateY(-12deg) rotateZ(1deg)
       translateX(0);
+    z-index: 2;
   }
 
   &__preview-image--tilted {
@@ -170,6 +193,7 @@
       translateX(0);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 
     &::after {
       content: "";
@@ -551,6 +575,22 @@
       grid-template-columns: 1fr;
       min-height: 240px;
       padding: 0.85rem;
+    }
+
+    /* On small phones, remove the tilted 3D transform and center the image */
+    &__preview-image {
+      transform: none;
+      transform-origin: center center;
+      margin: 0 auto;
+      width: min(100%, 520px);
+      max-height: 400px;
+      display: block;
+    }
+
+    &__preview-skeleton {
+      transform: none;
+      transform-origin: center center;
+      margin: 0 auto;
     }
 
     &__preview-window--left {
